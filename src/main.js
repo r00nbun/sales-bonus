@@ -25,13 +25,11 @@ function calculateBonusByProfit(index, total, seller) {
     switch (index) {
         case 0:
             return profit * 0.15;
-            break;
-        case (1 || 2):
+        case 1:
+        case 2:
             return profit * 0.10;
-            break;
         case (total - 1):
             return 0;
-            break;
         default:
             return profit * 0.05;
     }
@@ -85,7 +83,7 @@ function analyzeSalesData(data, options) {
         record.items.forEach(item => {
             const product = productIndex[item.sku];
             if (!product) return;
-            
+
             const cost = product.purchase_price * item.quantity;
             const revenue = calculateRevenue(item, product);
             const profit = revenue - cost;
